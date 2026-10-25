@@ -1465,7 +1465,7 @@ async function handleMessages(req, res) {
           method: "POST",
           headers: zenHeaders(req, auth),
           body: JSON.stringify(payload),
-          signal: isStream ? req.signal : AbortSignal.timeout(config.timeoutMs),
+          signal: AbortSignal.timeout(config.timeoutMs),
         })
       } catch (err) {
         lastErr = { error: { type: "api_error", message: err.message } }
@@ -1689,7 +1689,7 @@ async function handleChat(req, res, responsesRoute = false) {
           method: "POST",
           headers: zenHeaders(req, auth),
           body: JSON.stringify(payload),
-          signal: isStream ? req.signal : AbortSignal.timeout(config.timeoutMs),
+          signal: AbortSignal.timeout(config.timeoutMs),
         })
       } catch (err) {
         lastErr = { error: { type: "upstream_error", message: err.message } }
